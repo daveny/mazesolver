@@ -12,18 +12,27 @@ class Line:
         canvas.create_line(self.start.x, self.start.y, self.end.x, self.end.y, fill=fill_color, width=2)
 
 class Cell:
-    def __init__(self, x1, x2, y1, y2, has_left_wall, has_top_wall, has_right_wall, has_bottom_wall, win):
+    def __init__(self, win = None):
+        self.x1 = None
+        self.x2 = None
+        self.y1 = None
+        self.y2 = None
+        self.has_left_wall = True
+        self.has_top_wall = True
+        self.has_right_wall = True
+        self.has_bottom_wall = True
+        self.win = win
+
+    def draw(self, x1, y1, x2, y2):
+
+        if self.win is None or self.win.canvas is None:
+            # Skip drawing if no valid window object or canvas exists.
+            return
+
         self.x1 = x1
         self.x2 = x2
         self.y1 = y1
         self.y2 = y2
-        self.has_left_wall = has_left_wall
-        self.has_top_wall = has_top_wall
-        self.has_right_wall = has_right_wall
-        self.has_bottom_wall = has_bottom_wall
-        self.win = win
-
-    def draw(self):
 
         if self.has_left_wall:
             self.win.canvas.create_line(self.x1, self.y1, self.x1, self.y2)

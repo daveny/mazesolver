@@ -1,5 +1,6 @@
 from point import Cell
 import time
+import random
 
 class Maze:
     def __init__(
@@ -11,6 +12,7 @@ class Maze:
             cell_size_x,
             cell_size_y,
             win = None,
+            seed = None
         ):
         self.x1 = x1
         self.y1 = y1
@@ -21,6 +23,9 @@ class Maze:
         self.win = win
         self._cells = []
         self._create_cells()
+        if seed is not None:
+            self.seed = seed
+            random.seed(seed)
     
     def _create_cells(self):
         for i in range(self.num_cols):

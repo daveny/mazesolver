@@ -22,6 +22,7 @@ class Cell:
         self.has_right_wall = True
         self.has_bottom_wall = True
         self.win = win
+        self.visited = False
 
     def draw(self, x1, y1, x2, y2):
 

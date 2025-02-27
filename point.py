@@ -35,14 +35,30 @@ class Cell:
         self.y2 = y2
 
         if self.has_left_wall:
-            self.win.canvas.create_line(self.x1, self.y1, self.x1, self.y2)
+            self.win.canvas.create_line(self.x1, self.y1, self.x1, self.y2, fill="black")
+        if not self.has_left_wall:
+            self.win.canvas.create_line(self.x1, self.y1, self.x1, self.y2, fill="white")
+
         if self.has_top_wall:
-            self.win.canvas.create_line(self.x1, self.y1, self.x2, self.y1)
+            self.win.canvas.create_line(self.x1, self.y1, self.x2, self.y1, fill="black")
+        if not self.has_top_wall:
+            self.win.canvas.create_line(self.x1, self.y1, self.x2, self.y1, fill="white")
+
         if self.has_right_wall:
-            self.win.canvas.create_line(self.x2, self.y1, self.x2, self.y2)
+            self.win.canvas.create_line(self.x2, self.y1, self.x2, self.y2, fill="black")
+        if not self.has_right_wall:
+            self.win.canvas.create_line(self.x2, self.y1, self.x2, self.y2, fill="white")
+
         if self.has_bottom_wall:
-            self.win.canvas.create_line(self.x1, self.y2, self.x2, self.y2)
-        
+            self.win.canvas.create_line(self.x1, self.y2, self.x2, self.y2, fill="black")
+        if not self.has_bottom_wall:
+            self.win.canvas.create_line(self.x1, self.y2, self.x2, self.y2, fill="white")
+
+    def s_draw(self):
+        if self.x1 is None or self.x2 is None or self.y1 is None or self.y2 is None:
+            return
+        self.draw(self.x1, self.y1, self.x2, self.y2)
+
     def draw_move(self, to_cell, undo=False):
         move = Line(Point((self.x1 + self.x2)/2, (self.y1 + self.y2)/2), Point((to_cell.x1 + to_cell.x2)/2, (to_cell.y1 + to_cell.y2)/2))
         if undo:

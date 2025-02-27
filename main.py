@@ -20,7 +20,7 @@ def main():
     # cell1.draw_move(cell2, True)
 
     maze = Maze(150, 50, 20, 20, 25, 25, win)
-    
+    maze.break_entrance_and_exit()
 
     win.wait_for_close()
     return 0
